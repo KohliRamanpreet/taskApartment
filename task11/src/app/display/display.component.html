@@ -1,0 +1,88 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <span class="navbar-brand" style="color:cornsilk"><strong>Apartmentzz</strong></span>
+        </div>
+
+        <span class="mat-spacer"></span>
+        <ul class="nav navbar-nav" style="display: inline-block;">
+            <li> <button class="button" [routerLink]="['']">Home</button> </li>
+            <li> <button class="button" [routerLink]="['']">Admin</button> </li>
+        </ul>
+    </div>
+</nav>
+<div *ngIf="flag==1" class="box">
+    <form #enForm="ngForm">
+
+        <label>Enter Block Number </label>
+        <input style="width: 200px;" type="number" name="blockNo" class="form-control" ngModel #block="ngModel"
+            required>
+
+
+        <label>Enter Flat Number </label>
+        <input style="width: 200px;" type="number" name="flatNo" class="form-control" ngModel #flat="ngModel" required>
+
+        <br>
+
+        <input type="submit" value="Proceed" (click)="searchForm(enForm)" class="btn btn-primary"
+            style=" background-color:  #9a91e9;" [disabled]="enForm.form.invalid">
+    </form>
+</div>
+<div *ngIf="flag==2" class="box">
+    <form (ngSubmit)="fetch(fetchForm)" #fetchForm="ngForm">
+        <label>Enter Code Sent to your registered phone number </label>
+        <input style="width: 200px;" type="text" name="code" class="form-control" ngModel #code="ngModel" required>
+        <br>
+        <input type="submit" value="Proceed" class="btn btn-primary" style=" background-color:  #9a91e9;"
+            [disabled]="!fetchForm.form.valid">
+    </form>
+</div>
+<div class="p-5 m-5 abc" *ngIf="flag1==1">
+    <h2 style="text-align: center; ">You can edit and delete your information here.</h2>
+    <form #enform="ngForm">
+        <h3 class="disp"> Family Name: </h3> <input type="text" name="name7"
+            placeholder={{user.famName}} [(ngModel)]=user.famName><br>
+        <h3 class="disp"> Flat no:</h3> <input type="text" name="name1" placeholder={{user.flatNo}}
+            [(ngModel)]=user.flatNo> <br>
+        <h3 class="disp"> Block no:</h3><input type="text" name="name2" placeholder={{user.blockNo}}
+            [(ngModel)]=user.blockNo> <br>
+        <h3 class="disp"> Head Name: </h3><input type="text" name="name3"
+            placeholder={{user.headName}} [(ngModel)]=user.headName> <br>
+        <h3 class="disp"> phone no: </h3> <input type="text" name="name4" placeholder={{user.pNumber}}
+            [(ngModel)]=user.pNumber> <br>
+        <h3 class="disp"> email id: </h3> <input type="text" name="name5" placeholder={{user.eMail}}
+            [(ngModel)]=user.eMail><br>
+        <br> 
+        <button type="button" class=" mb-2" style=" background-color:  #9a91e9;" class="btn btn-primary"
+            (click)="addMembers()">Add Members</button>
+        <table class="table">
+            <tr>
+                <th style=" width: 80px;">Name</th>
+                <th style=" width: 80px;">Age</th>
+                <th style=" width: 80px;">gender</th>
+                <th style=" width: 80px;">Relation</th>
+                <th style=" width: 80px;">Delete</th>
+
+            </tr>
+            <tr *ngFor="let a of user.members; let i=index">
+                <td> <input type="text" placeholder={{a.name}} name="name_{{a.id}}"
+                        [(ngModel)]=a.name required></td>
+                <td > <input type="number" placeholder={{a.age}} name="age_{{a.id}}"
+                        [(ngModel)]=a.age></td>
+                <td > <input type="text" placeholder={{a.gender}} name="gender_{{a.id}}"
+                        [(ngModel)]=a.gender></td>
+                <td > <input type="text" placeholder={{a.relation}} name="relation_{{a.id}}"
+                        [(ngModel)]=a.relation></td>
+                <td > <button type="button" class="btn btn-danger btn-sm"
+                        (click)="removeMembers(i)">Remove</button> </td>
+            </tr>
+
+        </table>
+        <input style=" background-color:  #9a91e9;" type="submit" value="Edit" class="btn btn-primary" (click)="edit()">
+        <input style="margin-left: 20px; background-color:  #9a91e9;" type="submit" class="btn btn-primary"
+            value="delete" (click)="delete()">
+
+    </form>
+
+
+</div>

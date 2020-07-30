@@ -1,0 +1,48 @@
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <span class="navbar-brand" style="color:cornsilk"><strong>Apartmentzz</strong></span>
+            </div>
+            
+            <span class="mat-spacer"></span>
+            <ul class="nav navbar-nav" style="display: inline-block;">
+                     <li> <button class="button" [routerLink]="['']">Admin </button> </li>  
+                      <li>      <button class="button" [routerLink]="['/display']">Search </button> </li>  
+                         
+                </ul>
+        </div>
+              
+    </nav>
+    <div class="box">
+        <div class="row" style="height: 240px;">
+            <div class="col-md-6 col-sm-12 ">
+                <div
+                    style="text-align: center; margin-top: 40px; margin-left: 50px; margin-right: 50px; font-size: 15px;  ">
+                    <img src="../../assets/img/logo.png" style="height: 75px; width: 120px;">
+                    <br>
+                 We  <span style="color:  #a765bb;"> apartmentzz</span> keep your information in  handy.
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 ">
+                <img src="../../assets/img/home.png" style="object-fit: cover; width: 100%; height: 240px">
+            </div>
+        </div>
+        <div style="background-color: white;  height: 180px;width:780px;">
+            <br>
+            <br>
+            <div class="row">
+                <div class="px-5 mx-5">
+                   <span style="margin-left: 250px;  font-weight: bold;"> Enroll your flat details here</span><br>
+                    <button [routerLink]="['register']" ><b>Register</b></button>
+                </div>
+               
+            </div>
+            <div style="margin-top: 25px; font-size: 8px; margin-left: 5px; font-weight: bold;">
+                The Apartmentzz Team.
+            </div>
+        </div>
+    </div>
+</body>

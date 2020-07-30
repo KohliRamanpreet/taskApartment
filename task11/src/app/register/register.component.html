@@ -1,0 +1,151 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <span class="navbar-brand" style="color:cornsilk"><strong>Apartmentzz</strong></span>
+        </div>
+
+        <span class="mat-spacer"></span>
+        <ul class="nav navbar-nav" style="display: inline-block;">
+            <li> <button class="button" [routerLink]="['']">Home </button> </li>
+            <li> <button class="button" [routerLink]="['']">Admin </button> </li>
+            <li> <button class="button" [routerLink]="['/display']">Search </button> </li>
+
+        </ul>
+    </div>
+
+</nav>
+<div class="loginbox">
+    <h1>Register</h1>
+    <form #enForm="ngForm" novalidate>
+
+
+        <label>Family Name</label>
+        <input class="form-control" type="text" id="name" name="name" class="form-control" required [(ngModel)]=user.famName
+            #name1="ngModel">
+        <div *ngIf="name1.invalid && (name1.dirty || name1.touched)">
+            <small class="text-danger">
+                <small *ngIf="name1.errors.required">
+                    Family Name is required.
+                </small>
+            </small>
+        </div>
+
+
+
+        <label>Block Number</label>
+        <input class="form-control" type="number" id="blockNo" name="blockNo" class="form-control" required
+            [(ngModel)]=user.blockNo #blockNo1="ngModel">
+        <div *ngIf="blockNo1.invalid && (blockNo1.dirty || blockNo1.touched)">
+            <small class="text-danger">
+                <small *ngIf="blockNo1.errors.required">
+                    Block Number is required.
+                </small>
+            </small>
+        </div>
+
+
+
+
+        <label>Flat Number</label>
+        <input class="form-control" type="number" id="flatNo" name="flatNo" class="form-control" required
+            [(ngModel)]=user.flatNo #flatNo1="ngModel">
+        <div *ngIf="flatNo1.invalid && (flatNo1.dirty || flatNo1.touched)">
+            <small class="text-danger">
+                <small *ngIf="flatNo1.errors.required">
+                    Flat Number is required.
+                </small>
+            </small>
+        </div>
+
+
+
+
+
+
+
+        <label>Head Name</label>
+        <input class="form-control" type="text" id="head" name="head" class="form-control" required [(ngModel)]=user.headName
+            #head1="ngModel">
+        <div *ngIf="head1.invalid && (head1.dirty || head1.touched)">
+            <small class="text-danger">
+                <small *ngIf="head1.errors.required">
+                  Head Name is required.
+                </small>
+            </small>
+        
+    </div>
+
+
+    <label>Email</label>
+
+    <input type="email" class="form-control" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel"
+     id="eMail" name="eMail" [(ngModel)]=user.eMail required>
+
+    <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <small class="text-danger">
+            <small *ngIf="email.errors.required">
+                E-Mail is required.
+            </small>
+            <small *ngIf="email.errors.pattern">
+                Invalid Email
+            </small>
+        </small>
+    </div>
+
+
+    <label>Phone Number</label>
+    <input type="text" name="no" pattern="^[0-9]{10}$" #no="ngModel" [(ngModel)]=user.pNumber
+        class="form-control"  #mobile="ngModel" required />
+    <div *ngIf="no.invalid && (no.dirty || no.touched)">
+        <small class="text-danger">
+            <small *ngIf="no.errors.required ">
+                Phone Number is mandatory.
+            </small>
+            <small *ngIf=" no.errors.pattern">
+                Invalid Number.
+            </small>
+        </small>
+    </div>
+
+
+
+
+
+
+
+
+
+
+        <button type="button" class="btn btn-primary mb-4" (click)="addMembers()">Add Members</button>
+        <br>
+        <section class="container border m-1 p-2" *ngFor="let member of members; let i = index;">
+            <div class="row">
+                <div class="col-6">
+                    <h4 style="color: black;">Member {{i + 1}}</h4>
+                </div>
+                <div class="col-6 text-right">
+                    <button type="button" class="btn btn-danger btn-sm" (click)="removeMembers(i)">Remove</button>
+                </div>
+            </div>
+
+            <label>Name</label>
+            <input type="text" class="form-control" [(ngModel)]="member.name" name="name_{{member.id}}" />
+
+
+            <label>Gender</label>
+            <input type="text" class="form-control" [(ngModel)]="member.gender" name="gender_{{member.id}}"/>
+
+
+            <label>Age</label>
+            <input type="text" class="form-control" [(ngModel)]="member.age" name="age_{{member.id}}" />
+
+
+            <label>Relation with the head of the family</label>
+            <input type="text" class="form-control" [(ngModel)]="member.relation" name="relation_{{member.id}}">
+                
+
+        </section>
+
+        <input type="submit" name="submit" value="Login" (click)="onSubmit()" [disabled]="enForm.form.invalid"> 
+    </form>
+</div>
